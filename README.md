@@ -1,2 +1,2 @@
-# torch
-For the pigsquad narrative game jam
+# Torch
+For the pigsquad narrative game jam.
