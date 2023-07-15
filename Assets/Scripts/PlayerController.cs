@@ -30,14 +30,18 @@ public class PlayerController : MonoBehaviour
     bool wasGrounded;
     Vector2 wasVelocity;
 
-    // references
+    // current physics state
+    bool physicsFrozen;
+    Vector2 preFreezeVelocity;
+
+    // grabbed references
     private Rigidbody2D rigid;
 
     // utility
     private Vector3 colliderExtents;
 
 
-    /* Event Methods */
+    /* Action Methods */
 
     void Start()
     {
@@ -50,57 +54,83 @@ public class PlayerController : MonoBehaviour
         wasVelocity = Vector2.zero;
     }
 
-    // Update is called once per frame
     void Update()
     {
         float t = Time.deltaTime;
 
-        // check ground
-        RaycastHit2D groundHit = checkGroundCollisions();
-        bool isGrounded = groundHit.collider != null;
-
-        // correct for landing sticking
-        if (!wasGrounded && isGrounded && Mathf.Abs(wasVelocity.x) > 0.5f)
+        if (physicsFrozen)
         {
-            float curDir = Mathf.Sign(rigid.velocity.x);
-            Vector2 dir = curDir * new Vector2(groundHit.normal.y, -groundHit.normal.x);
-
-            float mag = Mathf.Sqrt(
-                Mathf.Abs(dir.x * wasVelocity.x) +
-                Mathf.Abs(dir.y * wasVelocity.y)
-                );
-            rigid.velocity = mag * dir;
-        }
-
-        // check inputs
-        bool pressingUp = Input.GetKey(KeyCode.UpArrow);
-        int pressingHoriz =
-            (Input.GetKey(KeyCode.LeftArrow) ? -1 : 0) +
-            (Input.GetKey(KeyCode.RightArrow) ? 1 : 0);
-
-        // appply gravity
-        if (!isGrounded) applyGravity(t);
-
-        // strafe
-        if (pressingHoriz != 0) playerStrafeAccel(t, pressingHoriz, isGrounded, groundHit.normal);
-        else playerStrafeDecel(t, isGrounded, groundHit.normal);
-
-        // jump
-        if (isGrounded && pressingUp) playerJump();
-
-        // update physics material friction
-        if (rigid.velocity.magnitude == 0)
-        {
-            rigid.sharedMaterial.friction = 100f;
+            rigid.velocity = Vector2.zero;
         }
         else
         {
-            rigid.sharedMaterial.friction = 0f;
+            // check ground
+            RaycastHit2D groundHit = checkGroundCollisions();
+            bool isGrounded = groundHit.collider != null;
+
+            // correct for landing sticking
+            if (!wasGrounded && isGrounded && Mathf.Abs(wasVelocity.x) > 0.5f)
+            {
+                float curDir = Mathf.Sign(rigid.velocity.x);
+                Vector2 dir = curDir * new Vector2(groundHit.normal.y, -groundHit.normal.x);
+
+                float mag = Mathf.Sqrt(
+                    Mathf.Abs(dir.x * wasVelocity.x) +
+                    Mathf.Abs(dir.y * wasVelocity.y)
+                    );
+                rigid.velocity = mag * dir;
+            }
+
+            // check inputs
+            bool pressingUp = Input.GetKey(KeyCode.UpArrow);
+            int pressingHoriz =
+                (Input.GetKey(KeyCode.LeftArrow) ? -1 : 0) +
+                (Input.GetKey(KeyCode.RightArrow) ? 1 : 0);
+
+            // appply gravity
+            if (!isGrounded) applyGravity(t);
+
+            // strafe
+            if (pressingHoriz != 0) playerStrafeAccel(t, pressingHoriz, isGrounded, groundHit.normal);
+            else playerStrafeDecel(t, isGrounded, groundHit.normal);
+
+            // jump
+            if (isGrounded && pressingUp) playerJump();
+
+            // update physics material friction
+            if (rigid.velocity.magnitude == 0)
+            {
+                rigid.sharedMaterial.friction = 100f;
+            }
+            else
+            {
+                rigid.sharedMaterial.friction = 0f;
+            }
+
+            // set for next frame
+            wasGrounded = isGrounded;
+            wasVelocity = rigid.velocity;
         }
 
-        // set for next frame
-        wasGrounded = isGrounded;
-        wasVelocity = rigid.velocity;
+        
+    }
+
+
+    /* Event Methods */
+
+    public void SetPhysicsFrozen (bool frozen)
+    {
+        physicsFrozen = frozen;
+
+        if (frozen)
+        {
+            preFreezeVelocity = rigid.velocity;
+            rigid.velocity = Vector2.zero;
+        }
+        else
+        {
+            rigid.velocity = preFreezeVelocity;
+        }
     }
 
 
