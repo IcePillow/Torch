@@ -10,6 +10,7 @@ public class Manager : MonoBehaviour
 
     // references
     private CameraController cameraController;
+    private List<Burnable> burnables;
 
     // state
     public bool physicsFrozen { get; private set; }
@@ -21,6 +22,7 @@ public class Manager : MonoBehaviour
     {
         physicsFrozen = false;
         cameraController = gameObject.GetComponent<CameraController>();
+        burnables = new List<Burnable>();
     }
 
     void Update()
@@ -61,12 +63,29 @@ public class Manager : MonoBehaviour
         cameraController.InitiateCameraMove(move);
     }
 
+    public void SpreadFireFromBurnable (Burnable burnable)
+    {
+        foreach (Burnable b in burnables)
+        {
+            if (b != burnable &&
+                b.ColliderBounds.Intersects (burnable.ColliderBounds))
+            {
+                b.StartBurning();
+            }
+        }
+    }
+
 
     /* Change Values */
 
     public void ChangeCamTracking(string xy, bool track, Vector2 bounds)
     {
         cameraController.ChangeTracking(xy, track, bounds);
+    }
+
+    public void AddBurnable(Burnable burnable)
+    {
+        burnables.Add(burnable);
     }
 
 }

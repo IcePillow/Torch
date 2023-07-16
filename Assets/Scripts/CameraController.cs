@@ -17,7 +17,7 @@ public class CameraController : MonoBehaviour
     private Transform camTransform;
 
     // constants
-    private float PIX_PER_UNIT = 900f / 15f;
+    private float PIX_PER_UNIT = 720f / 10f;
 
 
     /* Action Methods */

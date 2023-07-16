@@ -5,34 +5,39 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // physics parameters
-    public float GravityStrength;
-    public float JumpStrength;
+    public float GravityStrength = 25f;
+    public float JumpStrength = 10.5f;
     [Tooltip("Player will fall faster when not holding up and when descending")]
     [Range(0.6f, 1.4f)]
-        public float FastFallMultiple;
+        public float FastFallMultiple = 1.1f;
     [Tooltip("Max vertical falling speed")]
-        public float TerminalSpeed;
+        public float TerminalSpeed = 15f;
 
-    public float RunTopSpeed;
-    public float GlideTopSpeed;
-    public float RunAcceleration;
+    public float RunTopSpeed = 6f;
+    public float GlideTopSpeed = 5f;
+    public float RunAcceleration = 28f;
     [Tooltip("Player slow down when there is no input")]
-        public float RunDeceleration;
+        public float RunDeceleration = 18f;
     [Tooltip("Relative acceleration when in the air compared to on the ground")]
     [Range(0.25f, 1f)]
-        public float GlideAccelMultiple;
+        public float GlideAccelMultiple = 0.6f;
     [Tooltip("How much the player is slowed if they are running over max speed")]
-        public float RunOverspeedResist;
+        public float RunOverspeedResist = 20f;
     [Tooltip("How much the player is slowed if they are gliding over max speed")]
-        public float GlideOverspeedResist;
+        public float GlideOverspeedResist = 15f;
+
+    [Tooltip("How early, in seconds, the player can press an invalid jump and still jump when valid")]
+    [Range(0f, 0.25f)]
+        public float JumpBufferLength = 0.1f;
 
     // old physics state
-    bool wasGrounded;
-    Vector2 wasVelocity;
+    private bool wasGrounded;
+    private Vector2 wasVelocity;
 
     // current physics state
-    bool physicsFrozen;
-    Vector2 preFreezeVelocity;
+    private bool physicsFrozen;
+    private Vector2 preFreezeVelocity;
+    private float jumpBuffer;
 
     // grabbed references
     private Rigidbody2D rigid;
@@ -52,6 +57,7 @@ public class PlayerController : MonoBehaviour
 
         wasGrounded = false;
         wasVelocity = Vector2.zero;
+        jumpBuffer = 0;
     }
 
     void Update()
@@ -69,7 +75,9 @@ public class PlayerController : MonoBehaviour
             bool isGrounded = groundHit.collider != null;
 
             // correct for landing sticking
-            if (!wasGrounded && isGrounded && Mathf.Abs(wasVelocity.x) > 0.5f)
+            //if (!wasGrounded && isGrounded && Mathf.Abs(wasVelocity.x) > 0.5f)
+            if (wasVelocity.y < -1f && rigid.velocity.y >= 0f
+                && Mathf.Abs(wasVelocity.x) > 0.25f)
             {
                 float curDir = Mathf.Sign(rigid.velocity.x);
                 Vector2 dir = curDir * new Vector2(groundHit.normal.y, -groundHit.normal.x);
@@ -82,11 +90,10 @@ public class PlayerController : MonoBehaviour
             }
 
             // check inputs
-            bool pressingUp = Input.GetKey(KeyCode.W);
+            bool pressingUp = Input.GetKeyDown(KeyCode.W);
             int pressingHoriz =
                 (Input.GetKey(KeyCode.A) ? -1 : 0) +
                 (Input.GetKey(KeyCode.D) ? 1 : 0);
-
             // appply gravity
             if (!isGrounded) applyGravity(t);
 
@@ -94,8 +101,18 @@ public class PlayerController : MonoBehaviour
             if (pressingHoriz != 0) playerStrafeAccel(t, pressingHoriz, isGrounded, groundHit.normal);
             else playerStrafeDecel(t, isGrounded, groundHit.normal);
 
-            // jump
-            if (isGrounded && pressingUp) playerJump();
+            // modify the jump buffer
+            if (pressingUp)
+            {
+                jumpBuffer = JumpBufferLength;
+            }
+            else if (jumpBuffer > 0)
+            {
+                jumpBuffer -= t;
+            }
+
+            // jump if valid
+            if (isGrounded && jumpBuffer > 0) playerJump();
 
             // update physics material friction
             if (rigid.velocity.magnitude == 0)
@@ -110,9 +127,7 @@ public class PlayerController : MonoBehaviour
             // set for next frame
             wasGrounded = isGrounded;
             wasVelocity = rigid.velocity;
-        }
-
-        
+        }     
     }
 
 
@@ -202,7 +217,7 @@ public class PlayerController : MonoBehaviour
 
     private void playerStrafeDecel(float t, bool grounded, Vector2 groundNormal)
     {
-        if (rigid.velocity.magnitude > 0)
+        if (Mathf.Abs(rigid.velocity.x) > 0)
         {
             float curDir = Mathf.Sign(rigid.velocity.x);
 
