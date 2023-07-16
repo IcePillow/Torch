@@ -82,10 +82,10 @@ public class PlayerController : MonoBehaviour
             }
 
             // check inputs
-            bool pressingUp = Input.GetKey(KeyCode.UpArrow);
+            bool pressingUp = Input.GetKey(KeyCode.W);
             int pressingHoriz =
-                (Input.GetKey(KeyCode.LeftArrow) ? -1 : 0) +
-                (Input.GetKey(KeyCode.RightArrow) ? 1 : 0);
+                (Input.GetKey(KeyCode.A) ? -1 : 0) +
+                (Input.GetKey(KeyCode.D) ? 1 : 0);
 
             // appply gravity
             if (!isGrounded) applyGravity(t);
