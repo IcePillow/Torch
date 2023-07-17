@@ -8,7 +8,8 @@ public class Burnable : MonoBehaviour
     public Manager manager;
 
     // behavior parameters
-    public float BurnDuration = 2f;
+    public float BurnDuration = 1f;
+    public float StartupDuration = 1f;
     public Sprite[] ProgressSprites = new Sprite[2];
 
     // access descriptions
@@ -17,7 +18,11 @@ public class Burnable : MonoBehaviour
     // state variables
     private bool burning;
     private float burnTimeLeft;
+    private float startupTimeLeft;
     private bool rainedOn;
+
+    private ContactPoint2D[] contacts;
+
 
 
     /* Action Methods */
@@ -31,7 +36,7 @@ public class Burnable : MonoBehaviour
         manager.AddBurnable(this);
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (burning)
         {
@@ -65,9 +70,31 @@ public class Burnable : MonoBehaviour
 
     /* Event Methods */
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.collider.tag == "Player") StartBurning();
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    // contacts = collision.contacts;
+    // bool hitFromTop = false; 
+    // foreach(ContactPoint2D point in contacts) {
+    //     if(point.normal.y < 0) { hitFromTop = true; }
+    // }
+    //}
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.collider.tag == "Player") {
+            if (!burning) {
+                Debug.Log("Startup Timer Activated");
+                startupTimeLeft = StartupDuration; // start startup timer
+            }
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision) {
+        if (collision.collider.tag == "Player") {
+            if (!burning) {
+                startupTimeLeft -= Time.deltaTime; // if not already burning, increment startup timer, once it hits 0 start burning
+                if (startupTimeLeft <= 0) { StartBurning(); }
+            }
+        }
     }
 
     public void StartBurning()
@@ -75,6 +102,7 @@ public class Burnable : MonoBehaviour
         burning = true;
         burnTimeLeft = BurnDuration;
         gameObject.GetComponent<SpriteRenderer>().sprite = ProgressSprites[0];
+        Debug.Log("Started Burning");
     }
 
     public void SetRainedOn(bool rainedOn)
