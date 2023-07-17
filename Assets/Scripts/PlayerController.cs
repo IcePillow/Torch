@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public float JumpStrength = 10.5f;
     [Tooltip("Player will fall faster when not holding up and when descending")]
     [Range(0.6f, 1.4f)]
-        public float FastFallMultiple = 1.1f;
+        public float FastFallMultiple = 3f;
     [Tooltip("Max vertical falling speed")]
         public float TerminalSpeed = 15f;
 
@@ -155,7 +155,7 @@ public class PlayerController : MonoBehaviour
     {
         // choose gravity strength
         float strength = GravityStrength;
-        if (!Input.GetKey(KeyCode.UpArrow) || rigid.velocity.y < 0)
+        if (!Input.GetKey(KeyCode.W) || rigid.velocity.y < 0)
         {
             strength *= FastFallMultiple;
         }

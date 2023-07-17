@@ -2604,7 +2604,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GravityStrength: 25
   JumpStrength: 10.5
-  FastFallMultiple: 1.1
+  FastFallMultiple: 1.3
   TerminalSpeed: 15
   RunTopSpeed: 6
   GlideTopSpeed: 5
@@ -2613,7 +2613,7 @@ MonoBehaviour:
   GlideAccelMultiple: 0.6
   RunOverspeedResist: 20
   GlideOverspeedResist: 20
-  JumpBufferLength: 0.1
+  JumpBufferLength: 0.05
 --- !u!1 &2006987915
 GameObject:
   m_ObjectHideFlags: 0
