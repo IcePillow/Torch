@@ -1600,7 +1600,7 @@ GameObject:
   - component: {fileID: 1414945487}
   m_Layer: 0
   m_Name: Puddle
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2472,6 +2472,7 @@ GameObject:
   - component: {fileID: 1931035781}
   - component: {fileID: 1931035782}
   - component: {fileID: 1931035783}
+  - component: {fileID: 1931035784}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2617,6 +2618,21 @@ MonoBehaviour:
   RunOverspeedResist: 20
   GlideOverspeedResist: 20
   JumpBufferLength: 0.05
+--- !u!114 &1931035784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1931035776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58337d7f4c3ee46449363b1556432d53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 519420033}
+  RainDamageRate: 25
+  HealthRegenRate: 10
 --- !u!1 &2006987915
 GameObject:
   m_ObjectHideFlags: 0
