@@ -22,7 +22,7 @@ public class CamMoveTrigger : MonoBehaviour
     public Vector2 ScreenBoundsY;
 
 
-    /* Event Methods */
+    /* Trigger Methods */
 
     public void OnTriggerExit2D(Collider2D collider)
     {

@@ -10,7 +10,7 @@ public class Burnable : MonoBehaviour
     // behavior parameters
     public float BurnDuration = 1f;
     public float StartupDuration = 1f;
-    public Sprite[] ProgressSprites = new Sprite[2];
+    public Sprite[] ProgressSprites = new Sprite[3];
 
     // access descriptions
     public Bounds ColliderBounds { get; private set; }
@@ -20,9 +20,7 @@ public class Burnable : MonoBehaviour
     private float burnTimeLeft;
     private float startupTimeLeft;
     private bool rainedOn;
-
-    private ContactPoint2D[] contacts;
-
+    private bool contactWithPlayer;
 
 
     /* Action Methods */
@@ -31,6 +29,9 @@ public class Burnable : MonoBehaviour
     {
         burning = false;
         rainedOn = false;
+        contactWithPlayer = false;
+        burnTimeLeft = 0;
+        startupTimeLeft = 0;
 
         ColliderBounds = gameObject.GetComponent<Collider2D>().bounds;
         manager.AddBurnable(this);
@@ -38,9 +39,10 @@ public class Burnable : MonoBehaviour
 
     void FixedUpdate()
     {
+        float t = Time.deltaTime;
+
         if (burning)
         {
-            float t = Time.deltaTime;
             burnTimeLeft -= t;
 
             // halfway burned through
@@ -51,7 +53,7 @@ public class Burnable : MonoBehaviour
                 if (!rainedOn) manager.SpreadFireFromBurnable(this);
 
                 // change sprite
-                gameObject.GetComponent<SpriteRenderer>().sprite = ProgressSprites[1];
+                gameObject.GetComponent<SpriteRenderer>().sprite = ProgressSprites[2];
             }
 
             // all the way burned through
@@ -60,54 +62,59 @@ public class Burnable : MonoBehaviour
                 // spread fire
                 if (!rainedOn) manager.SpreadFireFromBurnable(this);
 
-                // disable collider
+                // disable
                 gameObject.GetComponent<Collider2D>().enabled = false;
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
             }
+        }
+        else if (contactWithPlayer)
+        {
+            startupTimeLeft -= t;
+            if (startupTimeLeft <= 0) StartBurning();
+        }
+    }
+
+
+    /* Trigger Methods */
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Player") {
+            contactWithPlayer = true;
+            if (!burning) {
+                startupTimeLeft = StartupDuration;
+            }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Player") {
+            contactWithPlayer = false;
         }
     }
 
 
     /* Event Methods */
 
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    // contacts = collision.contacts;
-    // bool hitFromTop = false; 
-    // foreach(ContactPoint2D point in contacts) {
-    //     if(point.normal.y < 0) { hitFromTop = true; }
-    // }
-    //}
-
-    private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.collider.tag == "Player") {
-            if (!burning) {
-                Debug.Log("Startup Timer Activated");
-                startupTimeLeft = StartupDuration; // start startup timer
-            }
-        }
-    }
-
-    private void OnCollisionStay2D(Collision2D collision) {
-        if (collision.collider.tag == "Player") {
-            if (!burning) {
-                startupTimeLeft -= Time.deltaTime; // if not already burning, increment startup timer, once it hits 0 start burning
-                if (startupTimeLeft <= 0) { StartBurning(); }
-            }
-        }
-    }
-
     public void StartBurning()
     {
         burning = true;
         burnTimeLeft = BurnDuration;
-        gameObject.GetComponent<SpriteRenderer>().sprite = ProgressSprites[0];
-        Debug.Log("Started Burning");
+        gameObject.GetComponent<SpriteRenderer>().sprite = ProgressSprites[1];
     }
 
-    public void SetRainedOn(bool rainedOn)
+    public void ResetState()
     {
-        this.rainedOn = rainedOn;
+        burning = false;
+        rainedOn = false;
+        contactWithPlayer = false;
+        burnTimeLeft = 0;
+        startupTimeLeft = 0;
+        gameObject.GetComponent<SpriteRenderer>().sprite = ProgressSprites[0];
+
+        gameObject.GetComponent<Collider2D>().enabled = true;
+        gameObject.GetComponent<SpriteRenderer>().enabled = true;
     }
 
 }

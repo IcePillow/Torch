@@ -654,6 +654,7 @@ MonoBehaviour:
   ProgressSprites:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
 --- !u!61 &508239273
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -778,7 +779,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31043fe0c244b42a1bb6f3dffad06ae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 1931035783}
+  PlayerObject: {fileID: 1931035776}
+  DeathOverlayLength: 0.5
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1419,6 +1421,7 @@ MonoBehaviour:
   BurnDuration: 0.5
   StartupDuration: 0.5
   ProgressSprites:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
 --- !u!212 &1300201615

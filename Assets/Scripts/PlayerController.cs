@@ -31,8 +31,8 @@ public class PlayerController : MonoBehaviour
         public float JumpBufferLength = 0.1f;
 
     // old physics state
-    private bool wasGrounded;
     private Vector2 wasVelocity;
+    private Vector2 savedLocation;
 
     // current physics state
     private bool physicsFrozen;
@@ -55,9 +55,10 @@ public class PlayerController : MonoBehaviour
 
         colliderExtents = gameObject.GetComponent<BoxCollider2D>().bounds.extents;
 
-        wasGrounded = false;
         wasVelocity = Vector2.zero;
         jumpBuffer = 0;
+
+        savedLocation = rigid.position;
     }
 
     void Update()
@@ -125,7 +126,6 @@ public class PlayerController : MonoBehaviour
             }
 
             // set for next frame
-            wasGrounded = isGrounded;
             wasVelocity = rigid.velocity;
         }     
     }
@@ -146,6 +146,14 @@ public class PlayerController : MonoBehaviour
         {
             rigid.velocity = preFreezeVelocity;
         }
+    }
+
+    public void ResetToSavedLocation()
+    {
+        rigid.position = savedLocation;
+
+        wasVelocity = Vector2.zero;
+        jumpBuffer = 0;
     }
 
 
