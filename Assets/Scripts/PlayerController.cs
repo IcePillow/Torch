@@ -12,6 +12,12 @@ public class PlayerController : MonoBehaviour
         public float FastFallMultiple = 3f;
     [Tooltip("Max vertical falling speed")]
         public float TerminalSpeed = 15f;
+    [Tooltip("Higher values allow player to climb steeper slopes")]
+    [Range(0.2f, 0.8f)]
+        public float SlopeLimit = 0.5f;
+    [Tooltip("How far below itself the player checks for groundedness")]
+    [Min(0.01f)]
+        public float GroundedCheckDist = 0.1f;
 
     public float RunTopSpeed = 6f;
     public float GlideTopSpeed = 5f;
@@ -53,7 +59,7 @@ public class PlayerController : MonoBehaviour
         rigid = gameObject.GetComponent<Rigidbody2D>();
         rigid.sharedMaterial = new PhysicsMaterial2D();
 
-        colliderExtents = gameObject.GetComponent<BoxCollider2D>().bounds.extents;
+        colliderExtents = gameObject.GetComponent<Collider2D>().bounds.extents;
 
         wasVelocity = Vector2.zero;
         jumpBuffer = 0;
@@ -76,7 +82,6 @@ public class PlayerController : MonoBehaviour
             bool isGrounded = groundHit.collider != null;
 
             // correct for landing sticking
-            //if (!wasGrounded && isGrounded && Mathf.Abs(wasVelocity.x) > 0.5f)
             if (wasVelocity.y < -1f && rigid.velocity.y >= 0f
                 && Mathf.Abs(wasVelocity.x) > 0.25f)
             {
@@ -200,6 +205,14 @@ public class PlayerController : MonoBehaviour
         {
             accel = pressing * new Vector2(groundNormal.y, -groundNormal.x);
         }
+
+        // check angle
+        if (Vector2.Dot(accel, Vector2.up) > 0.5f)
+        {
+            accel = Vector2.zero;
+        }
+
+        // scale
         accel *= RunAcceleration * (grounded ? 1 : GlideAccelMultiple);
 
         // overspeed resisting
@@ -259,10 +272,10 @@ public class PlayerController : MonoBehaviour
     {
         RaycastHit2D[] hits = Physics2D.BoxCastAll(
             transform.position,
-            new Vector2(1.99f * colliderExtents.x, 2 * colliderExtents.y),
+            new Vector2(1.9f * colliderExtents.x, 2 * colliderExtents.y),
             0,
             Vector2.down,
-            0.05f
+            GroundedCheckDist
             );
 
         // find the closest hit
