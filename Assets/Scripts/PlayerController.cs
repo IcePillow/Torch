@@ -270,9 +270,17 @@ public class PlayerController : MonoBehaviour
 
     private RaycastHit2D checkGroundCollisions()
     {
+        // choose spot
+        float boxHeight = 0.2f;
+        Vector2 origin = new Vector2 (
+            transform.position.x,
+            transform.position.y - colliderExtents.y + 0.1f
+            );
+
+        // cast box
         RaycastHit2D[] hits = Physics2D.BoxCastAll(
-            transform.position,
-            new Vector2(1.9f * colliderExtents.x, 2 * colliderExtents.y),
+            origin,
+            new Vector2(1.9f * colliderExtents.x, boxHeight),
             0,
             Vector2.down,
             GroundedCheckDist
