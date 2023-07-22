@@ -7,6 +7,8 @@ public class Manager : MonoBehaviour
 
     // references
     public GameObject PlayerObject;
+    [HideInInspector]
+        public Narrator narrator;
 
     // behavior
     public float DeathOverlayLength = 0.5f;
