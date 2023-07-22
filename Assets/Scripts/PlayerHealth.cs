@@ -67,7 +67,9 @@ public class PlayerHealth : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.collider.tag == "Water") manager.PlayerDied();
+        if (collision.collider.tag == "Water") {
+            manager.PlayerDied();
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collider)
