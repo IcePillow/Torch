@@ -5968,6 +5968,12 @@ MonoBehaviour:
   canvas: {fileID: 2010886330}
   Dialogue: {fileID: 4900000, guid: 329a453bf75456f428164dc5d631dec9, type: 3}
   CharsPerSecond: 30
+  SpeakerNames:
+  - HAN
+  - AKKI
+  SpeakerPortraits:
+  - {fileID: 21300000, guid: 790188f4521a6489fac26cb9bb949f49, type: 3}
+  - {fileID: 21300000, guid: c1229cfb71281469f88728ba0ca97ad6, type: 3}
 --- !u!1 &546114520
 GameObject:
   m_ObjectHideFlags: 0

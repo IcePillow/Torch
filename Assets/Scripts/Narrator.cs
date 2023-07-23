@@ -13,6 +13,8 @@ public class Narrator : MonoBehaviour
     // data parameters
     public TextAsset Dialogue;
     public float CharsPerSecond = 12;
+    public string[] SpeakerNames;
+    public Sprite[] SpeakerPortraits;
 
     // storage
     private Dictionary<string, TalkTime> talkTimes;
@@ -129,7 +131,14 @@ public class Narrator : MonoBehaviour
 
     public void ChangeSpeaker(string speaker)
     {
-
+        for (int i = 0; i < SpeakerNames.Length; i++)
+        {
+            if (speaker == SpeakerNames[i])
+            {
+                portraitImage.sprite = SpeakerPortraits[i];
+                break;
+            }
+        }
     }
 
 
