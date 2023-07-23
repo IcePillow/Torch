@@ -73,7 +73,7 @@ public class Narrator : MonoBehaviour
                     string speaker;
                     textToPrint = talkTime.getPhrase(currentPhrase, out speaker);
                     ChangeSpeaker(speaker);
-                    dialogueTextMesh.text = speaker + ": ";
+                    dialogueTextMesh.text = speaker + "\n";
                 }
             }
         }
@@ -95,7 +95,7 @@ public class Narrator : MonoBehaviour
         ChangeSpeaker(speaker);
 
         // set text
-        dialogueTextMesh.text = speaker + ": ";
+        dialogueTextMesh.text = speaker + "\n";
 
         if (downLow)
         {

@@ -57,6 +57,8 @@ public class PlayerController : MonoBehaviour
     // next level
     public string NextSceneName;
 
+    public AudioSource jumpAudio;
+
 
     /* Action Methods */
 
@@ -202,6 +204,7 @@ public class PlayerController : MonoBehaviour
     {
         rigid.velocity = new Vector2(rigid.velocity.x, JumpStrength);
         animator.SetBool("isJumping", true);
+        jumpAudio.Play();
     }
 
     private void playerStrafeAccel(float t, int pressing, bool grounded,
