@@ -75,17 +75,12 @@ public class Narrator : MonoBehaviour
                 }
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            StartTalkTime("INTRO_1");
-        }
     }
 
 
     /* Event Methods */
 
-    public void StartTalkTime(string title)
+    public void StartTalkTime(string title, bool downLow)
     {
         manager.freezePhysics();
         talkTime = talkTimes[title];
@@ -96,6 +91,32 @@ public class Narrator : MonoBehaviour
         textToPrint = talkTime.getPhrase(0, out speaker);
         ChangeSpeaker(speaker);
 
+        if (downLow)
+        {
+            foreach (Transform child in canvas.transform)
+            {
+                RectTransform rect = child.GetComponent<RectTransform>();
+                rect.position = new Vector3(
+                    rect.position.x,
+                    -3.75f,
+                    rect.position.z
+                    );
+            }
+        }
+        else
+        {
+            foreach (Transform child in canvas.transform)
+            {
+                RectTransform rect = child.GetComponent<RectTransform>();
+                rect.position = new Vector3(
+                    rect.position.x,
+                    3.75f,
+                    rect.position.z
+                    );
+            }
+        }
+
+        canvas.transform.position = new Vector3(0, 5, 0);
         canvas.enabled = true;
     }
 
