@@ -68,12 +68,12 @@ public class Narrator : MonoBehaviour
                 }
                 else
                 {
-                    dialogueTextMesh.text = "";
                     timeSinceChar = 0;
                     currentPhrase += 1;
                     string speaker;
                     textToPrint = talkTime.getPhrase(currentPhrase, out speaker);
                     ChangeSpeaker(speaker);
+                    dialogueTextMesh.text = speaker + ": ";
                 }
             }
         }
@@ -89,9 +89,13 @@ public class Narrator : MonoBehaviour
         currentPhrase = 0;
         timeSinceChar = 0;
 
+        // choose speaker
         string speaker;
         textToPrint = talkTime.getPhrase(0, out speaker);
         ChangeSpeaker(speaker);
+
+        // set text
+        dialogueTextMesh.text = speaker + ": ";
 
         if (downLow)
         {
@@ -125,6 +129,7 @@ public class Narrator : MonoBehaviour
     public void EndTalkTime()
     {
         talkTime = null;
+        dialogueTextMesh.text = "";
         canvas.enabled = false;
         manager.unfreezePhysics();
     }
