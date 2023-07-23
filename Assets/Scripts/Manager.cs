@@ -124,14 +124,14 @@ public class Manager : MonoBehaviour
 
     /* Utility Methods */
 
-    private void freezePhysics()
+    public void freezePhysics()
     {
         physicsFrozen = true;
         PlayerObject.GetComponent<PlayerController>().SetPhysicsFrozen(true);
         PlayerObject.GetComponent<PlayerHealth>().SetPhysicsFrozen(true);
     }
 
-    private void unfreezePhysics()
+    public void unfreezePhysics()
     {
         physicsFrozen = false;
         PlayerObject.GetComponent<PlayerController>().SetPhysicsFrozen(false);

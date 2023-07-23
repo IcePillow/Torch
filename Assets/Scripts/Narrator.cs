@@ -87,6 +87,7 @@ public class Narrator : MonoBehaviour
 
     public void StartTalkTime(string title)
     {
+        manager.freezePhysics();
         talkTime = talkTimes[title];
         currentPhrase = 0;
         timeSinceChar = 0;
@@ -102,6 +103,7 @@ public class Narrator : MonoBehaviour
     {
         talkTime = null;
         canvas.enabled = false;
+        manager.unfreezePhysics();
     }
 
     public void ChangeSpeaker(string speaker)

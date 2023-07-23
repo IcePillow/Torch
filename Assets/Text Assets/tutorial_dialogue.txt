@@ -1,0 +1,23 @@
+INTRO_1		
+1	AKKI	Will you chill out?
+2	AKKI	You know, take a break? Stop and smell the flowers? Not that there are any on this oversized rock. Jeez, you could've picked a nice place to take me. This is worse than the dump I died in.
+3	AKKI	Not funny? OK.
+		
+INTRO_2		
+1	AKKI	Do we need to be going so fast? There are puddles everywhere; you'll slip at this rate. Fall and break your neck. Then we can be dead together, heh. 
+2	HAN	...
+3	AKKI	Alright, I get it. I just want you to be careful, you know.
+4	AKKI	You haven't got me to watch your back anymore. Or your front, for that matter. 
+5	AKKI	And it wouldn't kill you to take it easy. It's not a race. It's not like it's the end of the world or anything.  
+		
+INTRO_3		
+1	AKKI	Woo! You see that? That was teamwork!
+		
+INTRO_4		
+1	AKKI	Oh wow.
+2	AKKI	Maybe it is the end of the world.
+		
+INTRO_5		
+1	AKKI	Well, that sucked. Hey, still alive and kicking though!
+2	AKKI	You know, maybe this isn't so good of an idea. What with the storm and all. Rain and fire might not work out too well.
+3	HAN	...
