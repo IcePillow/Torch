@@ -22,6 +22,8 @@ public class Manager : MonoBehaviour
     public bool physicsFrozen { get; private set; }
     private float resetTimer;
 
+    public Animator animator;
+
 
     /* Action Methods  */
 
@@ -129,6 +131,7 @@ public class Manager : MonoBehaviour
         physicsFrozen = true;
         PlayerObject.GetComponent<PlayerController>().SetPhysicsFrozen(true);
         PlayerObject.GetComponent<PlayerHealth>().SetPhysicsFrozen(true);
+        animator.SetBool("freezePhysics", true);
     }
 
     public void unfreezePhysics()
@@ -136,6 +139,7 @@ public class Manager : MonoBehaviour
         physicsFrozen = false;
         PlayerObject.GetComponent<PlayerController>().SetPhysicsFrozen(false);
         PlayerObject.GetComponent<PlayerHealth>().SetPhysicsFrozen(false);
+        animator.SetBool("freezePhysics", false);
     }
 
     private void resetRoom()

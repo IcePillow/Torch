@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -52,6 +53,9 @@ public class PlayerController : MonoBehaviour
 
     // utility
     private Vector3 colliderExtents;
+
+    // next level
+    public string NextSceneName;
 
 
     /* Action Methods */
@@ -273,6 +277,14 @@ public class PlayerController : MonoBehaviour
         }
 
         animator.SetFloat("xMove", rigid.velocity.x);
+    }
+
+    //load next level
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.collider.tag == "End") {
+            SceneManager.LoadScene(NextSceneName);
+        }
+
     }
 
 
