@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
     [Range(0f, 0.25f)]
         public float JumpBufferLength = 0.1f;
 
+    public Animator animator; 
+
     // old physics state
     private Vector2 wasVelocity;
     private Vector2 savedLocation;
@@ -80,6 +82,7 @@ public class PlayerController : MonoBehaviour
             // check ground
             RaycastHit2D groundHit = checkGroundCollisions();
             bool isGrounded = groundHit.collider != null;
+            if (isGrounded) animator.SetBool("isJumping", false);
 
             // correct for landing sticking
             if (wasVelocity.y < -1f && rigid.velocity.y >= 0f
@@ -194,6 +197,7 @@ public class PlayerController : MonoBehaviour
     private void playerJump()
     {
         rigid.velocity = new Vector2(rigid.velocity.x, JumpStrength);
+        animator.SetBool("isJumping", true);
     }
 
     private void playerStrafeAccel(float t, int pressing, bool grounded,
@@ -234,6 +238,10 @@ public class PlayerController : MonoBehaviour
             rigid.velocity.x + accel.x * t,
             rigid.velocity.y + accel.y * t
             );
+
+        // animation
+        animator.SetFloat("xMove", rigid.velocity.x);
+        
     }
 
     private void playerStrafeDecel(float t, bool grounded, Vector2 groundNormal)
@@ -263,6 +271,8 @@ public class PlayerController : MonoBehaviour
                 else rigid.velocity = new Vector2(0, rigid.velocity.y);
             }
         }
+
+        animator.SetFloat("xMove", rigid.velocity.x);
     }
 
 
