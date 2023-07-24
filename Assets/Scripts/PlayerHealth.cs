@@ -11,6 +11,9 @@ public class PlayerHealth : MonoBehaviour
     public float RainDamageRate = 25f;
     public float HealthRegenRate = 10f;
 
+    // sprite for showing HP
+    public GameObject lightCircle;
+
     // state variables
     [HideInInspector]
         public float Health { get; private set; }
@@ -44,7 +47,9 @@ public class PlayerHealth : MonoBehaviour
             Health = Mathf.Clamp(Health, 0, 100);
 
             // check health
-            if (Health == 0) manager.PlayerDied();
+            if (Health == 0) { manager.PlayerDied(); }
+            else { lightCircle.transform.localScale = new Vector3(0.015f, 0.015f, 0.015f) * Health;  }
+
         }
     }
 
