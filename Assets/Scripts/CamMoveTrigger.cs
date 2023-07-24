@@ -6,6 +6,7 @@ public class CamMoveTrigger : MonoBehaviour
     [Tooltip("The direction the player should be leaving for this to trigger")]
         public Vector2 TriggerDirection;
     public bool FreezePhysicsDuring = true;
+    public bool ResetAllBurnables = true;
 
     [Space(15)]
 
@@ -46,6 +47,11 @@ public class CamMoveTrigger : MonoBehaviour
             {
                 Manager.ChangeCamTracking("x", NowTrackX, ScreenBoundsX);
                 Manager.ChangeCamTracking("y", NowTrackY, ScreenBoundsY);
+            }
+            // reset burnables
+            if (ResetAllBurnables)
+            {
+                Manager.ResetBurnables();
             }
         }
     }

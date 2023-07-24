@@ -10,7 +10,6 @@ public class Burnable : MonoBehaviour
     // behavior parameters
     public float BurnDuration = 1f;
     public float StartupDuration = 1f;
-    public Sprite[] ProgressSprites = new Sprite[3];
 
     // access descriptions
     public Bounds ColliderBounds { get; private set; }
@@ -51,9 +50,6 @@ public class Burnable : MonoBehaviour
             {
                 // spread fire
                 if (!rainedOn) manager.SpreadFireFromBurnable(this);
-
-                // change sprite
-                gameObject.GetComponent<SpriteRenderer>().sprite = ProgressSprites[2];
             }
 
             // all the way burned through
@@ -101,7 +97,6 @@ public class Burnable : MonoBehaviour
     {
         burning = true;
         burnTimeLeft = BurnDuration;
-        gameObject.GetComponent<SpriteRenderer>().sprite = ProgressSprites[1];
     }
 
     public void ResetState()
@@ -111,7 +106,6 @@ public class Burnable : MonoBehaviour
         contactWithPlayer = false;
         burnTimeLeft = 0;
         startupTimeLeft = 0;
-        gameObject.GetComponent<SpriteRenderer>().sprite = ProgressSprites[0];
 
         gameObject.GetComponent<Collider2D>().enabled = true;
         gameObject.GetComponent<SpriteRenderer>().enabled = true;

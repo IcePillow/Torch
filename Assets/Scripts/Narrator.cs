@@ -26,6 +26,7 @@ public class Narrator : MonoBehaviour
     private int currentPhrase;
     private string textToPrint;
     private float timeSinceChar;
+    private bool dialogueIsChoice;
 
 
     /* Action Methods */
@@ -62,18 +63,31 @@ public class Narrator : MonoBehaviour
             // move to next phrase or be done
             if (keyInputDown() && textToPrint.Length == 0)
             {
-                if (currentPhrase + 1 == talkTime.numPhrases())
+                if (!dialogueIsChoice)
                 {
+                    if (currentPhrase + 1 == talkTime.numPhrases())
+                    {
+                        EndTalkTime();
+                    }
+                    else
+                    {
+                        timeSinceChar = 0;
+                        currentPhrase += 1;
+                        string speaker;
+                        textToPrint = talkTime.getPhrase(currentPhrase, out speaker, out dialogueIsChoice);
+                        ChangeSpeaker(speaker);
+                        dialogueTextMesh.text = speaker + "\n";
+                    }
+                }
+                else if (Input.GetKeyDown(KeyCode.S))
+                {
+                    manager.PlayerMadeChoice(talkTime.id, true);
                     EndTalkTime();
                 }
-                else
+                else if (Input.GetKeyDown(KeyCode.D))
                 {
-                    timeSinceChar = 0;
-                    currentPhrase += 1;
-                    string speaker;
-                    textToPrint = talkTime.getPhrase(currentPhrase, out speaker);
-                    ChangeSpeaker(speaker);
-                    dialogueTextMesh.text = speaker + "\n";
+                    manager.PlayerMadeChoice(talkTime.id, false);
+                    EndTalkTime();
                 }
             }
         }
@@ -91,7 +105,7 @@ public class Narrator : MonoBehaviour
 
         // choose speaker
         string speaker;
-        textToPrint = talkTime.getPhrase(0, out speaker);
+        textToPrint = talkTime.getPhrase(0, out speaker, out dialogueIsChoice);
         ChangeSpeaker(speaker);
 
         // set text
@@ -177,7 +191,7 @@ public class Narrator : MonoBehaviour
             }
             else
             {
-                talk.addPhrase(sections[1], sections[2]);
+                talk.addPhrase(sections[0], sections[1], sections[2]);
             }
         }
     }
@@ -196,6 +210,7 @@ public class Narrator : MonoBehaviour
     private class TalkTime
     {
         public string id;
+        private List<string> metas;
         private List<string> speakers;
         private List<string> phrases;
 
@@ -203,17 +218,20 @@ public class Narrator : MonoBehaviour
         {
             this.id = id;
 
+            metas = new List<string>();
             speakers = new List<string>();
             phrases = new List<string>();
         }
 
-        public void addPhrase(string speaker, string phrase)
+        public void addPhrase(string meta, string speaker, string phrase)
         {
+            speakers.Add(meta);
             speakers.Add(speaker);
             phrases.Add(phrase);
         }
-        public string getPhrase (int index, out string speaker)
+        public string getPhrase (int index, out string speaker, out bool isChoice)
         {
+            isChoice = metas[index] == "CHOICE";
             speaker = speakers[index];
             return phrases[index];
         }

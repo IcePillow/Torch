@@ -19,6 +19,11 @@ public class CameraController : MonoBehaviour
     // constants
     private float PIX_PER_UNIT = 720f / 10f;
 
+    // saved state
+    private CameraMove savedMove;
+    private Vector2? savedTrackX, savedTrackY;
+    private Vector3 savedCamTransform;
+
 
     /* Action Methods */
 
@@ -26,8 +31,12 @@ public class CameraController : MonoBehaviour
     {
         trackX = null;
         trackY = null;
-
         camTransform = Camera.main.transform;
+
+        savedMove = move;
+        savedTrackX = null;
+        savedTrackY = null;
+        savedCamTransform = Camera.main.transform.position;
     }
 
     void Update()
@@ -66,6 +75,22 @@ public class CameraController : MonoBehaviour
             if (track) trackY = bounds;
             else trackY = null;
         }
+    }
+
+    public void SaveCurrentState()
+    {
+        savedMove = move;
+        savedTrackX = trackX;
+        savedTrackY = trackY;
+        savedCamTransform = camTransform.position;
+    }
+
+    public void RevertToSavedState()
+    {
+        move = savedMove;
+        trackX = savedTrackX;
+        trackY = savedTrackY;
+        camTransform.position = savedCamTransform;
     }
 
 

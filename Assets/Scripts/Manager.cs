@@ -15,7 +15,7 @@ public class Manager : MonoBehaviour
 
     // references
     private CameraController cameraController;
-    private List<Burnable> burnables;
+    private List<Burnable> burnables = new List<Burnable>();
     private Material overlayMat;
 
     // state
@@ -23,6 +23,9 @@ public class Manager : MonoBehaviour
     private float resetTimer;
 
     public Animator animator;
+
+    // long term store
+    private Dictionary<string, bool> playerChoices;
 
 
     /* Action Methods  */
@@ -33,8 +36,8 @@ public class Manager : MonoBehaviour
         resetTimer = 0;
 
         cameraController = gameObject.GetComponent<CameraController>();
-        burnables = new List<Burnable>();
         overlayMat = gameObject.GetComponentInChildren<SpriteRenderer>().material;
+        playerChoices = new Dictionary<string, bool>();
     }
 
     void Update()
@@ -107,7 +110,20 @@ public class Manager : MonoBehaviour
 
     public void PlayerSaveLocation()
     {
-        // TODO implement camera saving here
+        cameraController.SaveCurrentState();
+    }
+
+    public void ResetBurnables()
+    {
+        foreach (Burnable b in burnables)
+        {
+            b.ResetState();
+        }
+    }
+
+    public void PlayerMadeChoice(string talkTitle, bool playerChoseShare)
+    {
+        playerChoices[talkTitle] = playerChoseShare;
     }
 
 
@@ -161,8 +177,7 @@ public class Manager : MonoBehaviour
             burnable.ResetState();
         }
 
-
-        // TODO move the camera to a saved position
+        cameraController.RevertToSavedState();
     }
 
 }
