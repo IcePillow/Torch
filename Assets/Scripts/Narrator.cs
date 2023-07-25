@@ -225,7 +225,7 @@ public class Narrator : MonoBehaviour
 
         public void addPhrase(string meta, string speaker, string phrase)
         {
-            speakers.Add(meta);
+            metas.Add(meta);
             speakers.Add(speaker);
             phrases.Add(phrase);
         }

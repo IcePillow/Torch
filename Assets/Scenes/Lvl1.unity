@@ -309,10 +309,6 @@ MonoBehaviour:
   manager: {fileID: 519420033}
   BurnDuration: 0.1
   StartupDuration: 0.6
-  ProgressSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!212 &14372112
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -440,10 +436,6 @@ MonoBehaviour:
   manager: {fileID: 519420033}
   BurnDuration: 0.1
   StartupDuration: 0.6
-  ProgressSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!212 &30414001
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -904,10 +896,6 @@ MonoBehaviour:
   manager: {fileID: 519420033}
   BurnDuration: 0.1
   StartupDuration: 0.5
-  ProgressSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!212 &226915324
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1146,10 +1134,6 @@ MonoBehaviour:
   manager: {fileID: 519420033}
   BurnDuration: 0.1
   StartupDuration: 0.6
-  ProgressSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!212 &257794560
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1610,10 +1594,6 @@ MonoBehaviour:
   manager: {fileID: 519420033}
   BurnDuration: 0.1
   StartupDuration: 0.6
-  ProgressSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!212 &388803750
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1741,10 +1721,6 @@ MonoBehaviour:
   manager: {fileID: 519420033}
   BurnDuration: 0.1
   StartupDuration: 0.6
-  ProgressSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!212 &410399581
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1872,10 +1848,6 @@ MonoBehaviour:
   manager: {fileID: 519420033}
   BurnDuration: 0.1
   StartupDuration: 0.5
-  ProgressSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!212 &438277432
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2114,10 +2086,6 @@ MonoBehaviour:
   manager: {fileID: 519420033}
   BurnDuration: 0.1
   StartupDuration: 0.5
-  ProgressSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!212 &450658216
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2230,10 +2198,6 @@ MonoBehaviour:
   manager: {fileID: 519420033}
   BurnDuration: 0.1
   StartupDuration: 0.5
-  ProgressSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!212 &458567856
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2822,10 +2786,6 @@ MonoBehaviour:
   manager: {fileID: 519420033}
   BurnDuration: 0.1
   StartupDuration: 0.6
-  ProgressSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!61 &508239273
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2937,6 +2897,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 497049296}
+  - {fileID: 1421274494}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3730,10 +3691,6 @@ MonoBehaviour:
   manager: {fileID: 519420033}
   BurnDuration: 0.1
   StartupDuration: 0.5
-  ProgressSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!212 &592620131
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3945,6 +3902,7 @@ MonoBehaviour:
   Manager: {fileID: 519420033}
   TriggerDirection: {x: 1, y: 0}
   FreezePhysicsDuring: 1
+  ResetAllBurnables: 1
   MoveCamera: 1
   Destination: {x: 0, y: 25}
   MoveCameraTime: 0.5
@@ -4165,10 +4123,6 @@ MonoBehaviour:
   manager: {fileID: 519420033}
   BurnDuration: 0.1
   StartupDuration: 0.6
-  ProgressSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!212 &647353755
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4296,10 +4250,6 @@ MonoBehaviour:
   manager: {fileID: 519420033}
   BurnDuration: 0.1
   StartupDuration: 0.6
-  ProgressSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!212 &810130458
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4649,10 +4599,6 @@ MonoBehaviour:
   manager: {fileID: 519420033}
   BurnDuration: 0.1
   StartupDuration: 0.6
-  ProgressSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!212 &939895419
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5113,10 +5059,6 @@ MonoBehaviour:
   manager: {fileID: 519420033}
   BurnDuration: 0.1
   StartupDuration: 0.6
-  ProgressSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!212 &1078309739
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5244,10 +5186,6 @@ MonoBehaviour:
   manager: {fileID: 519420033}
   BurnDuration: 0.1
   StartupDuration: 0.6
-  ProgressSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!212 &1090587899
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5375,10 +5313,6 @@ MonoBehaviour:
   manager: {fileID: 519420033}
   BurnDuration: 0.1
   StartupDuration: 0.6
-  ProgressSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!212 &1103152915
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10762,10 +10696,6 @@ MonoBehaviour:
   manager: {fileID: 519420033}
   BurnDuration: 0.1
   StartupDuration: 0.6
-  ProgressSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!212 &1252360749
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11115,10 +11045,6 @@ MonoBehaviour:
   manager: {fileID: 519420033}
   BurnDuration: 0.1
   StartupDuration: 0.5
-  ProgressSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!212 &1322469945
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11690,10 +11616,6 @@ MonoBehaviour:
   manager: {fileID: 519420033}
   BurnDuration: 0.1
   StartupDuration: 0.6
-  ProgressSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!212 &1416177982
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11741,6 +11663,90 @@ SpriteRenderer:
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!1 &1421274493
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1421274494}
+  - component: {fileID: 1421274495}
+  m_Layer: 0
+  m_Name: BG1_background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1421274494
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421274493}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 519420032}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1421274495
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421274493}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -2
+  m_Sprite: {fileID: 21300000, guid: 19691c948c5e140929ef6df85830a651, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 17.831326, y: 10.843373}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -12043,10 +12049,6 @@ MonoBehaviour:
   manager: {fileID: 519420033}
   BurnDuration: 0.1
   StartupDuration: 0.6
-  ProgressSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!212 &1487777390
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12285,10 +12287,6 @@ MonoBehaviour:
   manager: {fileID: 519420033}
   BurnDuration: 0.1
   StartupDuration: 0.6
-  ProgressSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!212 &1503492616
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12500,10 +12498,6 @@ MonoBehaviour:
   manager: {fileID: 519420033}
   BurnDuration: 0.1
   StartupDuration: 0.6
-  ProgressSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!212 &1507391512
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12631,10 +12625,6 @@ MonoBehaviour:
   manager: {fileID: 519420033}
   BurnDuration: 0.1
   StartupDuration: 0.6
-  ProgressSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!212 &1540744005
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12957,6 +12947,7 @@ MonoBehaviour:
   Manager: {fileID: 519420033}
   TriggerDirection: {x: -1, y: 0}
   FreezePhysicsDuring: 1
+  ResetAllBurnables: 1
   MoveCamera: 1
   Destination: {x: -65, y: 29}
   MoveCameraTime: 0.5
@@ -13066,10 +13057,6 @@ MonoBehaviour:
   manager: {fileID: 519420033}
   BurnDuration: 0.1
   StartupDuration: 0.5
-  ProgressSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!212 &1608023697
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14373,10 +14360,6 @@ MonoBehaviour:
   manager: {fileID: 519420033}
   BurnDuration: 0.1
   StartupDuration: 0.5
-  ProgressSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!212 &1894181407
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14477,6 +14460,7 @@ MonoBehaviour:
   Manager: {fileID: 519420033}
   TriggerDirection: {x: 1, y: 0}
   FreezePhysicsDuring: 1
+  ResetAllBurnables: 1
   MoveCamera: 1
   Destination: {x: 0, y: 32}
   MoveCameraTime: 0.5
@@ -14866,10 +14850,6 @@ MonoBehaviour:
   manager: {fileID: 519420033}
   BurnDuration: 0.1
   StartupDuration: 0.6
-  ProgressSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!212 &1982750578
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15066,6 +15046,7 @@ MonoBehaviour:
   Manager: {fileID: 519420033}
   TriggerDirection: {x: 1, y: 0}
   FreezePhysicsDuring: 1
+  ResetAllBurnables: 1
   MoveCamera: 0
   Destination: {x: 0, y: 0}
   MoveCameraTime: 0.5
@@ -15653,6 +15634,7 @@ MonoBehaviour:
   Manager: {fileID: 519420033}
   TriggerDirection: {x: -1, y: 0}
   FreezePhysicsDuring: 1
+  ResetAllBurnables: 1
   MoveCamera: 1
   Destination: {x: -18, y: 32}
   MoveCameraTime: 0.5
