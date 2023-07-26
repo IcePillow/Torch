@@ -1,0 +1,38 @@
+LVL1_1		
+1	AKKI	It doesn't look like the rain's going to let up anytime soon...
+2	AKKI	Better watch out for floods. Good thing there's plenty of high ground, huh?
+		
+AMIN_1		
+1	AKKI	Woah, a person! Someone else is really climbing this mountain in the middle of a flood? Let's go say hi!
+2	HAN	...
+3	AKKI	Yeah, yeah, you're on a mission, I got it. But they're all alone in an empty cave! What if they need help?
+4	HAN	...
+		
+AMIN_2		
+1	AMIN	Who... who's there?
+2	HAN	...
+3	AMIN	Get back! I... I have a weapon! 
+4	AKKI	Woah! First of all, relax, we come in peace, etc. Second of all, kid, that's a stick.
+5	AMIN	Oh... sorry, I thought you were a monster, heh... Wait, are you an adventurer, too?!
+6	AKKI	We sure are. Been at it since--honestly, probably before you were born. Wait, are you out here all by yourself, kid?
+7	AMIN	Yeah! This is my first adventure! I'm gonna climb to the top of the mountain. I heard there's tons of monsters and villains all over the place!
+8	AMIN	That's why my dad gave me this stick.
+9	HAN	...
+10	AKKI	So what are you doing in this cave then?
+11	AMIN	W-well... obviously I was getting ready for my great adventure, but then it started storming and all the paths flooded.
+12	AMIN	I mean! That's no big deal for an adventurer like me. My socks are already wet, and I don't care!
+13	AMIN	It's just so hard to see a way forward through all this wind and rain. My lantern went out, and I fell outside the cave and spilled all my oil...
+14	AKKI	This kid...
+15	AMIN	It's fine though! I don't need to see! My dad says I just have to believe in myself. Once my stick dries, I'm gonna keep going. It looks like this cave might flood over soon anyway, so there's nowhere to go but up!
+16	AKKI	How are you saying that so cheerfully? And do you even have a coat? Any food? ...Anything?
+17	AMIN	I have my stick!
+18	HAN	...
+19	AKKI	Alright, look, it's your lucky day, kid! I'm literally made of fire right now, and Han doesn't mind sharing. Right?
+20	HAN	...
+21	AKKI	Han, I know that look. What's going on?
+22	HAN	...
+23	AKKI	Is it weird because I am the fire? I'm pretty sure it'll be fine. Besides, you can't leave this kid to fend for himself. He already fell once, on flat ground, with a light. If this mountain doesn't kill him, the storm definitely will.
+24	AMIN	Hey!
+25	HAN	...
+26	AKKI	Hey, you know that sharing the fire doesn't mean losing me, right? Sure, maybe the flame will burn a little less bright, but that doesn't mean I'm not still here for you.
+Choice		Share your flame? (Press S to share, press D to deny)

@@ -111,6 +111,7 @@ public class Narrator : MonoBehaviour
         // set text
         dialogueTextMesh.text = speaker + "\n";
 
+        /*
         if (downLow)
         {
             foreach (Transform child in canvas.transform)
@@ -135,6 +136,7 @@ public class Narrator : MonoBehaviour
                     );
             }
         }
+        */
 
         canvas.transform.position = new Vector3(0, 5, 0);
         canvas.enabled = true;
