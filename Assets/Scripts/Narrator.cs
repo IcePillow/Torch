@@ -13,6 +13,7 @@ public class Narrator : MonoBehaviour
     // data parameters
     public TextAsset Dialogue;
     public float CharsPerSecond = 12;
+    public float FastSpeechFactor = 3;
     public string[] SpeakerNames;
     public Sprite[] SpeakerPortraits;
 
@@ -57,11 +58,11 @@ public class Narrator : MonoBehaviour
             {
                 dialogueTextMesh.text = dialogueTextMesh.text + textToPrint[0];
                 textToPrint = textToPrint.Substring(1);
-                timeSinceChar -= 1f / CharsPerSecond;
+                timeSinceChar -= 1f / (CharsPerSecond * (keyInputHeldDown() ? FastSpeechFactor : 1));
             }
 
             // move to next phrase or be done
-            if (keyInputDown() && textToPrint.Length == 0)
+            if (keyInputDownThisFrame() && textToPrint.Length == 0)
             {
                 if (!dialogueIsChoice)
                 {
@@ -198,12 +199,20 @@ public class Narrator : MonoBehaviour
         }
     }
 
-    private bool keyInputDown()
+    private bool keyInputDownThisFrame()
     {
         return Input.GetKeyDown(KeyCode.W)
             || Input.GetKeyDown(KeyCode.A)
             || Input.GetKeyDown(KeyCode.S)
             || Input.GetKeyDown(KeyCode.D);
+    }
+
+    private bool keyInputHeldDown()
+    {
+        return Input.GetKey(KeyCode.W)
+            || Input.GetKey(KeyCode.A)
+            || Input.GetKey(KeyCode.S)
+            || Input.GetKey(KeyCode.D);
     }
 
 

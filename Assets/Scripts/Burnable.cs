@@ -10,6 +10,7 @@ public class Burnable : MonoBehaviour
     // behavior parameters
     public float BurnDuration = 1f;
     public float StartupDuration = 1f;
+    public float RespawnTimer = 10f;
 
     // access descriptions
     public Bounds ColliderBounds { get; private set; }
@@ -20,6 +21,7 @@ public class Burnable : MonoBehaviour
     private float startupTimeLeft;
     private bool rainedOn;
     private bool contactWithPlayer;
+    private float timeUntilRespawn;
 
 
     /* Action Methods */
@@ -31,6 +33,7 @@ public class Burnable : MonoBehaviour
         contactWithPlayer = false;
         burnTimeLeft = 0;
         startupTimeLeft = 0;
+        timeUntilRespawn = 0;
 
         ColliderBounds = gameObject.GetComponent<Collider2D>().bounds;
         manager.AddBurnable(this);
@@ -59,14 +62,25 @@ public class Burnable : MonoBehaviour
                 if (!rainedOn) manager.SpreadFireFromBurnable(this);
 
                 // disable
+                burning = false;
                 gameObject.GetComponent<Collider2D>().enabled = false;
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                timeUntilRespawn = RespawnTimer;
             }
         }
         else if (contactWithPlayer)
         {
             startupTimeLeft -= t;
             if (startupTimeLeft <= 0) StartBurning();
+        }
+        else if (timeUntilRespawn > 0)
+        {
+            timeUntilRespawn -= t;
+
+            if (timeUntilRespawn < 0)
+            {
+                ResetState();
+            }
         }
     }
 
@@ -106,6 +120,7 @@ public class Burnable : MonoBehaviour
         contactWithPlayer = false;
         burnTimeLeft = 0;
         startupTimeLeft = 0;
+        timeUntilRespawn = 0;
 
         gameObject.GetComponent<Collider2D>().enabled = true;
         gameObject.GetComponent<SpriteRenderer>().enabled = true;

@@ -7614,6 +7614,7 @@ MonoBehaviour:
   manager: {fileID: 519420033}
   BurnDuration: 0.5
   StartupDuration: 0.5
+  RespawnTimer: 10
 --- !u!212 &1300201615
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8771,6 +8772,7 @@ MonoBehaviour:
   manager: {fileID: 519420033}
   BurnDuration: 0.5
   StartupDuration: 0.5
+  RespawnTimer: 10
 --- !u!212 &1507524006
 SpriteRenderer:
   m_ObjectHideFlags: 0
